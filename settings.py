@@ -1,6 +1,7 @@
+import glob
 import sys
 
-COMPULSORY_SETTINGS = ['NAME','MODULES']
+COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE']
 
 class ValidationError(Exception):
     pass
@@ -30,21 +31,46 @@ class Settings(object):
 
     def update_compulsory(self):
         for module in self.modules:
-            COMPULSORY_SETTINGS.append(getattr(module, 'COMPULSORY_SETTINGS', []))
+            compulsory = getattr(module, 'COMPULSORY_SETTINGS', [])
+            COMPULSORY_SETTINGS.extend(compulsory)
 
     def validate_settings(self):
         for setting in COMPULSORY_SETTINGS:
-            if not hasattr(self.settings, setting):
+            if not hasattr(self.settings, str(setting)):
                 raise ValidationError("%s must be specified in settings module" % setting)
         for setting in dir(self.settings):
             value = getattr(self.settings, setting)
-            Validator.validate(setting, value)
+            SettingsValidator.validate(setting, value)
             for module in self.modules:
-                if hasattr(module, 'Validator'):
-                    module.Validator.validate(setting, value)
+                if hasattr(module, 'SettingsValidator'):
+                    module.SettingsValidator.validate(setting, value)
 
     def get_settings_and_modules(self):
         return self.settings, self.modules
+
+
+class SettingsValidator(object):
+    @staticmethod
+    def validate(name, value):
+        getattr(SettingsValidator, 'validate_' + name, lambda x: None)(value)
+
+    @staticmethod
+    def validate_MODULES(value):
+        if not (isinstance(value, list) or isinstance(value, tuple)):
+            raise ValidationError('MODULES must be tuple or list (got %s)' % type(value))
+
+    @staticmethod
+    def validate_INPUT_FORMAT(value):
+        if not isinstance(value, basestring):
+            raise ValidationError('INPUT_FORMAT must be string')
+
+    @staticmethod
+    def validate_INPUT_FILE(value):
+        if not isinstance(value, basestring):
+            raise ValidationError('INPUT_FILE must be string')
+        found = glob.glob(value)
+        if (not found) or (found != [value]):
+            raise ValidationError('INPUT_FILE %s not found' % value)
 
 
 def get_setting(name, default=None):
@@ -52,15 +78,5 @@ def get_setting(name, default=None):
         return getattr(settings, name, default)
     else:
         return getattr(settings, name)
-
-class Validator(object):
-    @staticmethod
-    def validate(name, value):
-        getattr(Validator, 'validate_' + name, lambda x: None)(value)
-
-    @staticmethod
-    def validate_MODULES(value):
-        if not (isinstance(value, list) or isinstance(value, tuple)):
-            raise ValidationError('MODULES must be tuple or list (got %s)' % type(value))
 
 settings, modules = Settings().get_settings_and_modules()

@@ -1,6 +1,8 @@
 NAME = 'settings'
 
 MODULES = (
-    'glimmer',
-    'pfam',
+    'alignment',
 )
+
+INPUT_FORMAT = 'fasta'
+INPUT_FILE = 'test/test.fasta'
