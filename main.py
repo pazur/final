@@ -10,5 +10,7 @@ if __name__ == '__main__':
     except Exception as e:
         print e
         sys.exit(1)
+    result = []
     for module in settings.modules:
-        print module.run()
+        result = module.run(*result)
+        result = [result]

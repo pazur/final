@@ -1,7 +1,7 @@
 import glob
 import sys
 
-COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE']
+COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE', 'PIPELINE']
 
 class ValidationError(Exception):
     pass
@@ -71,6 +71,14 @@ class SettingsValidator(object):
         found = glob.glob(value)
         if (not found) or (found != [value]):
             raise ValidationError('INPUT_FILE %s not found' % value)
+
+    @staticmethod
+    def validate_PIPELINE(value):
+        if not (isinstance(value, list) or isinstance(value, tuple)):
+            raise ValidationError('PIPELINE must be tuple or list (got %s)' % type(value))
+        for step in value:
+            if not isinstance(step, basestring):
+                raise ValidationError('INPUT_FORMAT must be string')
 
 
 def get_setting(name, default=None):
