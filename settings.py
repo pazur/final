@@ -10,7 +10,7 @@ class ValidationError(Exception):
 class Settings(object):
     def __init__(self):
         self.settings_module = sys.argv[1]
-        self.modules = []
+        self.modules = {}
         self.load_settings()
         self.import_modules()
         self.update_compulsory()
@@ -25,7 +25,7 @@ class Settings(object):
     def import_modules(self):
         for module in self.settings.MODULES:
             try:
-                self.modules.append(__import__(module))
+                self.modules[module] = (__import__(module))
             except ImportError:
                 raise ValidationError("Cannot import module %s" % module)
 
@@ -81,9 +81,9 @@ class SettingsValidator(object):
                 raise ValidationError('INPUT_FORMAT must be string')
 
 
-def get_setting(name, default=None):
-    if default:
-        return getattr(settings, name, default)
+def get_setting(name, *args):
+    if args:
+        return getattr(settings, name, args[0])
     else:
         return getattr(settings, name)
 

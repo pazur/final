@@ -1,4 +1,5 @@
 import Bio.SeqIO
+import Bio.AlignIO
 
 class InputOutput(object):
     def __init__(self, format=None, *args, **kwargs):
@@ -36,3 +37,9 @@ class FileOutput(FileInputOutput):
 
     def write(self, seq):
         return Bio.SeqIO.write(seq, self.file, self.format)
+
+class AlignFileInput(FileInputOutput):
+    default_file = 'ALIGN_FILE'
+
+    def read(self):
+        return Bio.AlignIO.read(self.file, format=self.format)

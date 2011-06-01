@@ -1,0 +1,3 @@
+Każdy moduł musi posiadać funkcję run, która:
+- zwraca słownik
+- jest postaci run(**kwargs), gdzie kwargs to wynik działania poprzedniego modułu z PIPELINE.
