@@ -1,7 +1,7 @@
 import glob
 import sys
 
-COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE', 'PIPELINE']
+COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE', 'PIPELINE', 'SUMMARY', 'SUMMARY_FILE', 'SUMMARY_TYPE']
 
 class ValidationError(Exception):
     pass
@@ -77,8 +77,10 @@ class SettingsValidator(object):
         if not (isinstance(value, list) or isinstance(value, tuple)):
             raise ValidationError('PIPELINE must be tuple or list (got %s)' % type(value))
         for step in value:
-            if not isinstance(step, basestring):
-                raise ValidationError('INPUT_FORMAT must be string')
+            if not (isinstance(step, tuple) or isinstance(step, list)):
+                raise ValidationError('PIPELINE item must be a tuple or list')
+            if len(step) != 3:
+                raise ValidationError('PIPELINE item must have length 2')
 
 
 def get_setting(name, *args):

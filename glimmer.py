@@ -1,2 +1,0 @@
-class Glimmer(object):
-    pass

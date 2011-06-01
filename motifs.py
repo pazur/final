@@ -1,2 +1,0 @@
-class Motifs(object):
-    pass

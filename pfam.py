@@ -1,2 +1,0 @@
-class Pfam(object):
-    pass
