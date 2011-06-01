@@ -1,3 +1,7 @@
+from cStringIO import StringIO
+
+import Bio.Phylo
+
 def summary(results):
     from settings import get_setting
     data = get_setting('SUMMARY')
@@ -5,8 +9,8 @@ def summary(results):
     pipeline = get_setting('PIPELINE')
     with open(file_path,'w') as f:
         for number, key in data:
-            f.write('=== step %d - %s (module %s)  ===' % (number, key, pipeline[number][0]))
-            f.write(results[number][key])
+            f.write('==== step %d - %s (module %s)  ====\n' % (number, key, pipeline[number][0]))
+            f.write(format(results[number][key]))
 
 
 def format(value):
@@ -18,4 +22,10 @@ def format(value):
         return str(value)
 
 def human_readable(value):
+    if isinstance(value, Bio.Phylo.Newick.Tree):
+        f = StringIO()
+        Bio.Phylo.draw_ascii(value, file=f)
+        result = f.getvalue()
+        f.close()
+        return result
     return str(value)

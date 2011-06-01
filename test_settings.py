@@ -18,6 +18,7 @@ PIPELINE = (
 
 SUMMARY = (
     (0, 'tree_out'),
+    (0, 'tree'),
 )
 SUMMARY_FILE = 'test/summary.txt'
 SUMMARY_TYPE = 'HUMAN_READABLE'
