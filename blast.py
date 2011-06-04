@@ -17,7 +17,9 @@ RESULTS = (
 class BlastSearch(object):
     def __init__(self, sequence, program="blastn", database="nr", queryextra={}, *args, **kwargs):
         super(BlastSearch, self).__init__(*args, **kwargs)
-        self.sequence = sequence.seq
+        if isinstance(sequence, SeqRecord):
+            sequence = sequence.seq
+        self.sequence = sequence
         self.program = program
         self.database = database
         self.queryextra = queryextra

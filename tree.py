@@ -4,9 +4,13 @@ import Bio.Phylo
 
 from settings import get_setting
 
-
 COMPULSORY_SETTINGS = ('TREE_IMAGE',)
+ARGUMENTS = (
+    'tree',
+)
 
+RESULTS = (
+)
 class Tree(object):
     def __init__(self, tree=None, *args, **kwargs):
         super(Tree, self).__init__(*args, **kwargs)

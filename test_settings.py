@@ -47,3 +47,7 @@ CLUSTALW_NEWTREE = 'test/newtree_file.dnd'
 
 ### TREE ###
 TREE_IMAGE = 'test/tree.png'
+
+### GLIMMER ###
+GLIMMER_PATH = 'utilities/glimmer3'
+#ICM_fILE = 'some_file.icm'

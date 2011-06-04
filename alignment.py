@@ -5,6 +5,7 @@ import Bio.Phylo
 
 import inout
 from settings import get_setting
+import settings_validator
 from utils import create_tmp
 
 
@@ -22,6 +23,16 @@ RESULTS = (
     'align_out',    # clustalw stdout (aligment)
     'align_err',    # clustalw errout (alignment)
 )
+
+class SettingsValidator(settings_validator.SettingsValidator):
+    def validate_CLUSTALW_PATH(self, value):
+        self.validate_file(value, 'CLUSTALW_PATH')
+
+    def validate_CLUSTALW_NEWTREE(self, value):
+        self.validate_string(value, 'CLUSTALW_NEWTREE')
+
+    def validate_CLUSTALW_OUTFILE(self, value):
+        self.validate_string(value, 'CLUSTALW_OUTFILE')
 
 
 class Alignment(object):

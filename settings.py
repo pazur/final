@@ -1,10 +1,9 @@
 import glob
 import sys
 
-COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE', 'PIPELINE', 'SUMMARY', 'SUMMARY_FILE', 'SUMMARY_TYPE']
+import settings_validator
 
-class ValidationError(Exception):
-    pass
+COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE', 'PIPELINE', 'SUMMARY', 'SUMMARY_FILE', 'SUMMARY_TYPE']
 
 
 class Settings(object):
@@ -37,50 +36,47 @@ class Settings(object):
     def validate_settings(self):
         for setting in COMPULSORY_SETTINGS:
             if not hasattr(self.settings, str(setting)):
-                raise ValidationError("%s must be specified in settings module" % setting)
+                raise settings_validator.ValidationError("%s must be specified in settings module" % setting)
         for setting in dir(self.settings):
             value = getattr(self.settings, setting)
-            SettingsValidator.validate(setting, value)
+            SettingsValidator(self.modules).validate(setting, value)
             for module in self.modules:
                 if hasattr(module, 'SettingsValidator'):
-                    module.SettingsValidator.validate(setting, value)
+                    module.SettingsValidator(self.modules).validate(setting, value)
 
     def get_settings_and_modules(self):
         return self.settings, self.modules
 
 
-class SettingsValidator(object):
-    @staticmethod
-    def validate(name, value):
-        getattr(SettingsValidator, 'validate_' + name, lambda x: None)(value)
+class SettingsValidator(settings_validator.SettingsValidator):
+    def validate_MODULES(self, value):
+        self.validate_list_or_tuple(value, 'MODULES')
 
-    @staticmethod
-    def validate_MODULES(value):
-        if not (isinstance(value, list) or isinstance(value, tuple)):
-            raise ValidationError('MODULES must be tuple or list (got %s)' % type(value))
+    def validate_INPUT_FORMAT(self, value):
+        self.validate_string(value, 'INPUT_FORMAT')
 
-    @staticmethod
-    def validate_INPUT_FORMAT(value):
-        if not isinstance(value, basestring):
-            raise ValidationError('INPUT_FORMAT must be string')
+    def validate_INPUT_FILE(self, value):
+        self.validate_file(value, 'INPUT_FILE')
 
-    @staticmethod
-    def validate_INPUT_FILE(value):
-        if not isinstance(value, basestring):
-            raise ValidationError('INPUT_FILE must be string')
-        found = glob.glob(value)
-        if (not found) or (found != [value]):
-            raise ValidationError('INPUT_FILE %s not found' % value)
-
-    @staticmethod
-    def validate_PIPELINE(value):
-        if not (isinstance(value, list) or isinstance(value, tuple)):
-            raise ValidationError('PIPELINE must be tuple or list (got %s)' % type(value))
-        for step in value:
-            if not (isinstance(step, tuple) or isinstance(step, list)):
-                raise ValidationError('PIPELINE item must be a tuple or list')
+    def validate_PIPELINE(self, value):
+        self.validate_list_or_tuple(value, 'PIPELINE')
+        for number, step in enumerate(value):
+            self.validate_list_or_tuple(step, 'PIPELINE item')
             if len(step) != 3:
-                raise ValidationError('PIPELINE item must have length 2')
+                raise settings_validator.ValidationError('PIPELINE item must have length 3')
+            module, args, extra = step
+            if module not in self.modules:
+                raise settings_validator.ValidationError('PIPELINE: module %s not in MODULES' % module)
+            for arg in extra:
+                if arg not in self.modules[module].ARGUMENTS:
+                    raise settings_validator.ValidationError('PIPELINE: module %s has no argument %s' % (module, arg))
+            for (num, source) in args:
+                if num >= number:
+                    raise settings_validator.ValidationError('PIPELINE: source number greater than actual number (%d)' % number)
+                if source not in self.modules[value[num][0]].RESULTS:
+                    raise settings_validator.ValidationError('PIPELINE: source not in module output (%d)' % number)
+                if args[(num, source)] not in self.modules[module].ARGUMENTS:
+                    raise settings_validator.ValidationError('PIPELINE: module %s has no argument %s' % (module, args[(num, source)]))
 
 
 def get_setting(name, *args):
