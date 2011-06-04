@@ -1,19 +1,36 @@
 import os.path
-import tempfile
 
 from Bio.Align.Applications import ClustalwCommandline
 import Bio.Phylo
 
 import inout
 from settings import get_setting
+from utils import create_tmp
 
 
 COMPULSORY_SETTINGS = ('CLUSTALW_PATH',)
+ARGUMENTS = (
+    'input',        # Input file
+    'sequences',    # list of input sequences
+    'only_tree',    # boolean - if true - create only tree (without alignment)
+)
+RESULTS = (
+    'tree',         # Bio.Phylo.Tree
+    'tree_out',     # clustalw stdout (tree)
+    'tree_err',     # clustalw errout (tree)
+    'alignment',    # Multiple alignment
+    'align_out',    # clustalw stdout (aligment)
+    'align_err',    # clustalw errout (alignment)
+)
+
 
 class Alignment(object):
-    def __init__(self, input=None, only_tree=False, *args, **kwargs):
+    def __init__(self, input=None, sequences=None, only_tree=False, *args, **kwargs):
         super(Alignment, self).__init__(*args, **kwargs)
         from settings import get_setting
+        if sequences is not None:
+            input = create_tmp()
+            inout.FileOutput(input).write(sequences)
         if input is None:
             self.input = get_setting('INPUT_FILE')
         else:
@@ -52,10 +69,6 @@ class Alignment(object):
             'alignment': inout.AlignFileInput(file=outfile, format='clustal').read(),
         })
         return result
-
-def create_tmp():
-    file = tempfile.NamedTemporaryFile(delete=False)
-    return file.name
 
 def run(*args, **kwargs):
     return Alignment(*args, **kwargs).run()
