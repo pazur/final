@@ -1,6 +1,16 @@
 import Bio.SeqIO
 import Bio.AlignIO
 
+ARGUMENTS = (
+    'file',     # input file path
+    'format',   # input file format
+    'type',     # input file type ('SINGLE_SEQUENCE', 'MULTIPLE_SEQUENCE', 'ALIGNMENT')
+)
+
+RESULTS = (
+    'file_content',
+)
+
 class InputOutput(object):
     def __init__(self, format=None, *args, **kwargs):
         super(InputOutput, self).__init__(*args, **kwargs)
@@ -43,3 +53,14 @@ class AlignFileInput(FileInputOutput):
 
     def read(self):
         return Bio.AlignIO.read(self.file, format=self.format)
+
+def run(type, *args, **kwargs):
+    if type == 'SINGLE_SEQUENCE':
+        output = SingleSequenceFileInput(*args, **kwargs).read()
+    elif type == 'MULTIPLE_SEQUENCE':
+        output = MultipleSequenceFileInput(*args, **kwargs).read()
+    elif type == 'ALIGNMENT':
+        output = AlignFileInput(*args, **kwargs)
+    else:
+        raise Exception('Unknown input type')
+    return {'file_content': output}

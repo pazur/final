@@ -3,29 +3,39 @@ NAME = 'settings'
 MODULES = (
     'alignment',
     'tree',
+    'inout',
+    'blast',
 )
 
 PIPELINE = (
     #(module, {(source step, name): name}, {extra kwargs})
-    ('alignment',
+    ('inout',
         {},
+        {'type': 'SINGLE_SEQUENCE'}
+    ),
+    ('blast',
+        {(0, 'file_content'): 'sequence'},
+        {}
+    ),
+    ('alignment',
+        {(1, 'sequences'): 'sequences'},
         {'only_tree': True}
     ), ('tree',
-        {(0, 'tree'): 'tree'},
+        {(2, 'tree'): 'tree'},
         {}
     ),
 )
 
 SUMMARY = (
-    (0, 'tree_out'),
-    (0, 'tree'),
+    (2, 'tree_out'),
+    (2, 'tree'),
 )
 SUMMARY_FILE = 'test/summary.txt'
 SUMMARY_TYPE = 'HUMAN_READABLE'
 
 ### INOUT ###
 INPUT_FORMAT = 'fasta'
-INPUT_FILE = 'test/opuntia.fasta'
+INPUT_FILE = 'test/single.fasta'
 
 ### ALIGNMENT ###
 CLUSTALW_PATH = 'utilities/clustalw2'
