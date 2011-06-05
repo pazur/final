@@ -2,7 +2,7 @@ import pylab
 
 import Bio.Phylo
 
-from settings import get_setting
+from settings import get_file
 
 COMPULSORY_SETTINGS = ('TREE_IMAGE',)
 ARGUMENTS = (
@@ -18,7 +18,7 @@ class Tree(object):
 
     def run(self):
         Bio.Phylo.draw_graphviz(self.tree)
-        pylab.savefig(get_setting('TREE_IMAGE'))
+        pylab.savefig(get_file('TREE_IMAGE'))
         return {}
 
 

@@ -4,7 +4,7 @@ from Bio.Align.Applications import ClustalwCommandline
 import Bio.Phylo
 
 import inout
-from settings import get_setting
+from settings import get_setting, get_file
 import settings_validator
 from utils import create_tmp
 
@@ -50,7 +50,7 @@ class Alignment(object):
 
     def run(self):
         exe = get_setting('CLUSTALW_PATH')
-        tree_file = get_setting('CLUSTALW_NEWTREE', None)
+        tree_file = get_file('CLUSTALW_NEWTREE', None)
         if tree_file is None:
             tree_file = create_tmp()
         cline = ClustalwCommandline(exe, infile=self.input, newtree=tree_file)
@@ -63,7 +63,7 @@ class Alignment(object):
         if self.only_tree:
             return result
 
-        outfile = get_setting('CLUSTALW_OUTFILE', None)
+        outfile = get_file('CLUSTALW_OUTFILE', None)
         if outfile is None:
             outfile = create_tmp()
         cline = ClustalwCommandline(exe, infile=self.input, outfile=outfile)

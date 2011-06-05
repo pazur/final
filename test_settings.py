@@ -2,36 +2,35 @@ NAME = 'settings'
 
 MODULES = (
     'alignment',
-    'tree',
-    'inout',
     'blast',
+    'glimmer',
 )
 
 PIPELINE = (
-    #(module, {(source step, name): name}, {extra kwargs})
-    ('inout',
+    #(module, {(source step, name): name}, {extra kwargs}),
+    ('glimmer',
         {},
-        {'type': 'SINGLE_SEQUENCE'}
+        {},
     ),
     ('blast',
-        {(0, 'file_content'): 'sequence'},
+        {(0, 'genes'): 'sequence'},
         {}
     ),
     ('alignment',
         {(1, 'sequences'): 'sequences'},
-        {'only_tree': True}
-    ), ('tree',
-        {(2, 'tree'): 'tree'},
-        {}
+        {},
     ),
 )
 
 SUMMARY = (
-    (2, 'tree_out'),
-    (2, 'tree'),
+    (0, 'genes'),
+    (1, 'sequences'),
+    (2, 'alignment')
 )
 SUMMARY_FILE = 'test/summary.txt'
 SUMMARY_TYPE = 'HUMAN_READABLE'
+
+PREFIX = ''
 
 ### INOUT ###
 INPUT_FORMAT = 'fasta'
@@ -50,4 +49,5 @@ TREE_IMAGE = 'test/tree.png'
 
 ### GLIMMER ###
 GLIMMER_PATH = 'utilities/glimmer3'
-#ICM_fILE = 'some_file.icm'
+ICM_FILE = 'test/sample.icm'
+GLIMMER_OUTPUT = 'test/glimmer_out'

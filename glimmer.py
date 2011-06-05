@@ -13,8 +13,9 @@ ARGUMENTS = (
 )
 RESULTS = (
     'genes',
-    'glimmer_output',
+    'glimmer_details',
     'glimmer_exit_code',
+    'glimmer_predict'
 )
 
 class Glimmer(object):
@@ -32,8 +33,10 @@ class Glimmer(object):
 
     def run_glimmer(self):
         input_file = create_tmp()
-        output_file = create_tmp()
         inout.FileOutput(input_file).write(self.sequence)
+        output_file = get_setting('GLIMMER_OUTPUT', None)
+        if output_file is None:
+            output_file = create_tmp()
         exit_code = subprocess.call([get_setting('GLIMMER_PATH'), input_file, self.icm_file, output_file])
         return exit_code, output_file
 
@@ -52,10 +55,13 @@ class Glimmer(object):
 
     def run(self):
         glimmer_exit_code, glimmer_output = self.run_glimmer()
-        genes = self.read_genes(glimmer_output)
+        glimmer_details = glimmer_output + '.detail'
+        glimmer_predict = glimmer_output + '.predict'
+        genes = list(self.read_genes(glimmer_details))
         return {
             'genes': genes,
-            'glimmer_output': glimmer_output,
+            'glimmer_details': glimmer_details,
+            'glimmer_predict': glimmer_predict,
             'glimmer_exit_code': glimmer_exit_code,
         }
 

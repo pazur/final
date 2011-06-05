@@ -1,3 +1,4 @@
+from cStringIO import StringIO
 import Bio.SeqIO
 import Bio.AlignIO
 
@@ -21,11 +22,13 @@ class InputOutput(object):
 
 
 class FileInputOutput(InputOutput):
+    default_file = ""
+
     def __init__(self, file=None, *args, **kwargs):
         super(FileInputOutput, self).__init__(*args, **kwargs)
         if file is None:
-            from settings import settings
-            file = getattr(settings, self.default_file)
+            from settings import get_file
+            file = get_file(self.default_file)
         self.file = file
 
 
@@ -40,7 +43,7 @@ class MultipleSequenceFileInput(FileInputOutput):
     default_file = 'INPUT_FILE'
 
     def read(self):
-        return Bio.SeqIO.parse(self.file, self.format)
+        return list(Bio.SeqIO.parse(self.file, self.format))
 
 class FileOutput(FileInputOutput):
     default_file = 'OUTPUT_FILE'
@@ -53,6 +56,15 @@ class AlignFileInput(FileInputOutput):
 
     def read(self):
         return Bio.AlignIO.read(self.file, format=self.format)
+
+class StringOutput(InputOutput):
+    def write(self, seq):
+        s = StringIO()
+        try:
+            Bio.SeqIO.write(seq, s, self.format)
+            return s.getvalue()
+        finally:
+            s.close()
 
 def run(type, *args, **kwargs):
     if type == 'SINGLE_SEQUENCE':

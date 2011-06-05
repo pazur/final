@@ -1,10 +1,19 @@
-import glob
+import os.path
 import sys
 
 import settings_validator
 
-COMPULSORY_SETTINGS = ['MODULES', 'INPUT_FORMAT', 'INPUT_FILE', 'PIPELINE', 'SUMMARY', 'SUMMARY_FILE', 'SUMMARY_TYPE']
+COMPULSORY_SETTINGS = [
+    'MODULES',
+    'INPUT_FORMAT',
+    'INPUT_FILE',
+    'PIPELINE',
+    'SUMMARY',
+    'SUMMARY_FILE',
+    'SUMMARY_TYPE',
+]
 
+SUMMARY_TYPES = ['HUMAN_READABLE']
 
 class Settings(object):
     def __init__(self):
@@ -19,14 +28,14 @@ class Settings(object):
         try:
             self.settings = __import__(self.settings_module)
         except ImportError:
-            raise ValidationError("Cannot import settings file %s" % self.settings_module)
+            raise settings_validator.ValidationError("Cannot import settings file %s" % self.settings_module)
 
     def import_modules(self):
         for module in self.settings.MODULES:
             try:
                 self.modules[module] = (__import__(module))
             except ImportError:
-                raise ValidationError("Cannot import module %s" % module)
+                raise settings_validator.ValidationError("Cannot import module %s" % module)
 
     def update_compulsory(self):
         for module in self.modules:
@@ -78,11 +87,40 @@ class SettingsValidator(settings_validator.SettingsValidator):
                 if args[(num, source)] not in self.modules[module].ARGUMENTS:
                     raise settings_validator.ValidationError('PIPELINE: module %s has no argument %s' % (module, args[(num, source)]))
 
+    def validate_SUMMARY_FILE(self, value):
+        self.validate_string(value, 'SUMMARY_FILE')
+
+    def validate_SUMMARY_TYPE(self, value):
+        if value not in SUMMARY_TYPES:
+            raise settings_validator.ValidationError('SUMMARY_TYPE must be in ' + str(SUMMARY_TYPES))
+
+    def validate_SUMMARY(self, value):
+        self.validate_list_or_tuple(value, 'SUMMARY')
+        for v in value:
+            self.validate_list_or_tuple(v, 'SUMMARY ITEM')
+            if len(v) != 2:
+                raise settings_validator.ValidationError('SUMMARY ITEM length must be 2')
 
 def get_setting(name, *args):
     if args:
         return getattr(settings, name, args[0])
     else:
         return getattr(settings, name)
+
+def get_file(name, *args):
+    if args:
+        path = getattr(settings, name, args[0])
+    else:
+        path = getattr(settings, name)
+    prefix = ''
+    if hasattr(settings, 'PREFIX'):
+        prefix = getattr(settings, 'PREFIX')
+    if (not isinstance(path, basestring)) or os.path.isabs(path):
+        return path
+    else:
+        return os.path.join(prefix, path)
+
+def set_setting(name, value):
+    setattr(settings, name, value)
 
 settings, modules = Settings().get_settings_and_modules()
