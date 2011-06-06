@@ -1,0 +1,139 @@
+
+==== step 0 - genes (module glimmer)  ====
+[10 elements:
+	SEQ (len 144) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 120) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 117) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 120) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 111) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 208) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 219) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 207) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 219) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+	SEQ (len 126) GOS_2453010 -- GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+]
+==== step 1 - sequences (module blast)  ====
+[100 elements:
+	SEQ (len 25) gi|325121063|gb|CP002177.1| -- Acinetobacter calcoaceticus PHEA-2, complete genome
+	SEQ (len 25) gi|323516058|gb|CP002522.1| -- Acinetobacter baumannii TCDC-AB0715, complete genome
+	SEQ (len 25) gi|322506180|gb|CP001921.1| -- Acinetobacter baumannii 1656-2, complete genome
+	SEQ (len 25) gi|298698338|gb|CP002080.1| -- Acinetobacter sp. DR1, complete genome
+	SEQ (len 32) gi|294346812|gb|CP001983.1| -- Bacillus megaterium QM B1551, complete genome
+	SEQ (len 25) gi|213985689|gb|CP001172.1| -- Acinetobacter baumannii AB307-0294, complete genome
+	SEQ (len 25) gi|213054530|gb|CP001182.1| -- Acinetobacter baumannii AB0057, complete genome
+	SEQ (len 25) gi|183207914|gb|CP000863.1| -- Acinetobacter baumannii ACICU, complete genome
+	SEQ (len 25) gi|169147133|emb|CU459141.1| -- Acinetobacter baumannii str. AYE, complete genome
+	SEQ (len 25) gi|126385999|gb|CP000521.1| -- Acinetobacter baumannii ATCC 17978, complete genome
+	SEQ (len 47) gi|322504220|emb|FR798979.1| -- Leishmania braziliensis MHOM/BR/75/M2904 complete genome, chromosome 5
+	SEQ (len 26) gi|283945497|ref|NG_016363.1| -- Homo sapiens telomerase RNA component (TERC), RefSeqGene on chromosome 3
+	SEQ (len 36) gi|218430358|emb|CU928163.2| -- Escherichia coli UMN026 chromosome, complete genome
+	SEQ (len 47) gi|154332230|ref|XM_001561882.1| -- Leishmania braziliensis MHOM/BR/75/M2904 hypothetical protein, conserved (LbrM05_V2.1180) partial mRNA
+	SEQ (len 21) gi|116098028|gb|CP000416.1| -- Lactobacillus brevis ATCC 367, complete genome
+	SEQ (len 31) gi|57230420|gb|AE017353.1| -- Cryptococcus neoformans var. neoformans JEC21 chromosome 13, complete sequence
+	SEQ (len 26) gi|84875184|dbj|AB234387.1| -- Uncultured Bacteroidales bacterium gene for 16S rRNA, partial sequence, clone: MgMjR-029
+	SEQ (len 31) gi|71143482|gb|CP000083.1| -- Colwellia psychrerythraea 34H, complete genome
+	SEQ (len 26) gi|28626602|gb|AC078802.14| -- Homo sapiens 3 BAC RP11-816J6 (Roswell Park Cancer Institute Human BAC Library) complete sequence
+	SEQ (len 35) gi|328782949|ref|XM_001120412.2| -- PREDICTED: Apis mellifera putative succinate dehydrogenase [ubiquinone] cytochrome b small subunit, mitochondrial-like (LOC725566), mRNA
+	SEQ (len 27) gi|295148075|ref|NG_017157.1| -- Homo sapiens transmembrane protein 126A (TMEM126A), RefSeqGene on chromosome 11
+	SEQ (len 29) gi|261603383|gb|CP001790.1| -- Pectobacterium wasabiae WPP163, complete genome
+	SEQ (len 56) gi|254946573|gb|CP001619.1| -- Dyadobacter fermentans DSM 18053, complete genome
+	SEQ (len 27) gi|13488748|dbj|AP000642.5| -- Homo sapiens genomic DNA, chromosome 11q, clone:CMB9-55L24, complete sequences
+	SEQ (len 31) gi|328785430|ref|XM_003250553.1| -- PREDICTED: Apis mellifera CUE domain-containing protein 2-like (LOC100576619), mRNA
+	SEQ (len 21) gi|199580193|gb|AC189498.2| -- Brassica rapa subsp. pekinensis clone KBrB086L12, complete sequence
+	SEQ (len 24) gi|29294390|gb|AC117200.3| -- Mus musculus BAC clone RP23-164N7 from 3, complete sequence
+	SEQ (len 24) gi|66992698|emb|CR962133.1| -- Medicago truncatula chromosome 5 clone mth2-17h8, COMPLETE SEQUENCE
+	SEQ (len 26) gi|15668155|gb|AC013409.8| -- Homo sapiens BAC clone RP11-471D6 from 2, complete sequence
+	SEQ (len 26) gi|82779828|gb|AC154435.2| -- Mus musculus BAC clone RP24-188N22 from chromosome 14, complete sequence
+	SEQ (len 32) gi|313760569|ref|NM_001199555.1| -- Gallus gallus leucine-rich repeats and immunoglobulin-like domains 3 (LRIG3), mRNA
+	SEQ (len 27) gi|268566758|ref|XM_002639760.1| -- Caenorhabditis briggsae Hypothetical protein CBG02257 (CBG02257) mRNA, complete cds
+	SEQ (len 32) gi|209871356|gb|CP001196.1| -- Oligotropha carboxidovorans OM5 strain OM5, complete genome
+	SEQ (len 25) gi|42794107|gb|AC146938.2| -- Oryza sativa Japonica Group chromosome 11 clone OSJNBa0062O09 map near S6115, complete sequence
+	SEQ (len 32) gi|46239475|emb|CR386716.1| -- Gallus gallus finished cDNA, clone ChEST72k5
+	SEQ (len 31) gi|312101472|ref|XM_003149605.1| -- Loa loa hypothetical protein (LOAG_14103) mRNA, complete cds
+	SEQ (len 31) gi|295656236|gb|FJ615758.2| -- Strongylocentrotus purpuratus clone 5.0 telomerase reverse transcriptase (TERT-S) mRNA, complete cds
+	SEQ (len 39) gi|259115678|gb|GQ873781.1| -- Uncultured organism clone 1041059765648 genomic sequence
+	SEQ (len 43) gi|253992019|gb|CP000094.2| -- Pseudomonas fluorescens Pf0-1, complete genome
+	SEQ (len 26) gi|218169741|gb|CP001291.1| -- Cyanothece sp. PCC 7424, complete genome
+	SEQ (len 28) gi|169601529|ref|XM_001794135.1| -- Phaeosphaeria nodorum SN15 hypothetical protein partial mRNA
+	SEQ (len 36) gi|153924817|dbj|AK256420.1| -- Gryllus bimaculatus mRNA, GBcontig03281
+	SEQ (len 24) gi|50726818|gb|AC118747.5| -- Mus musculus chromosome 5, clone RP24-194J1, complete sequence
+	SEQ (len 24) gi|76560141|gb|AC162616.7| -- Mus musculus chromosome 5, clone RP23-260P17, complete sequence
+	SEQ (len 24) gi|73952307|ref|XM_546033.2| -- PREDICTED: Canis familiaris similar to CG7638-PA (LOC488916), mRNA
+	SEQ (len 31) gi|68342549|gb|CP000076.1| -- Pseudomonas fluorescens Pf-5, complete genome
+	SEQ (len 22) gi|309244421|gb|CP002213.1| -- Paenibacillus polymyxa SC2, complete genome
+	SEQ (len 30) gi|262076673|gb|CP001804.1| -- Haliangium ochraceum DSM 14365, complete genome
+	SEQ (len 29) gi|37575357|gb|AY368673.1| -- Triticum turgidum HMW-glutenin locus, complete sequence
+	SEQ (len 30) gi|293612213|gb|GU817319.1| -- Triticum aestivum clone BAC_2383A24 chromosome 3B, complete sequence
+	SEQ (len 29) gi|301109320|ref|XM_002903695.1| -- Phytophthora infestans T30-4 carbohydrate-binding protein, putative (PITG_08346) mRNA, complete cds
+	SEQ (len 26) gi|254304473|emb|CU571319.15| -- Zebrafish DNA sequence from clone CH73-169D4 in linkage group 11, complete sequence
+	SEQ (len 34) gi|170044881|ref|XM_001850007.1| -- Culex quinquefasciatus integrator complex subunit 12, mRNA
+	SEQ (len 31) gi|225216964|gb|FJ032632.1| -- Oryza alta clone a0212A21 subtilisin-like protease precursor, ZAC, MYB-CC type transfactor, calcium ion binding protein, Monoculm1, Mlo family protein, and aspartic proteinase nepenthesin-1 precursor, genes, complete cds; and unknown genes
+	SEQ (len 26) gi|118387018|ref|XM_001026626.1| -- Tetrahymena thermophila hypothetical protein, mRNA
+	SEQ (len 23) gi|47118307|dbj|BA000026.2| -- Mycoplasma penetrans HF-2 DNA, complete genome
+	SEQ (len 27) gi|312179423|gb|CP002326.1| -- Caldicellulosiruptor kristjanssonii 177R1B, complete genome
+	SEQ (len 25) gi|237832294|ref|XM_002365404.1| -- Toxoplasma gondii ME49 hypothetical protein, mRNA
+	SEQ (len 25) gi|225216950|gb|FJ032631.1| -- Oryza officinalis clone a0134O03 subtilisin-like protease precursor, ZAC, MYB-CC type transfactor, calcium ion binding protein, Monoculm1, Mlo family protein, aspartic proteinase nepenthesin-1 precursor, microtubule-associated protein MAP65-1a, IQ calmodulin-binding motif family protein, and EMB2261 putative genes, complete cds; and unknown genes
+	SEQ (len 25) gi|225216945|gb|FJ032630.1| -- Oryza minuta clone a0318C03 Monoculm1, Mlo family protein, and aspartic proteinase nepenthesin-1 precursor, genes, complete cds; and unknown gene
+	SEQ (len 32) gi|196007435|ref|XM_002113548.1| -- Trichoplax adhaerens hypothetical protein, mRNA
+	SEQ (len 30) gi|75905674|gb|AC163746.5| -- Mus musculus BAC clone RP23-394B5 from chromosome 17, complete sequence
+	SEQ (len 30) gi|74013594|gb|AC163687.5| -- Mus musculus BAC clone RP23-3H13 from chromosome 17, complete sequence
+	SEQ (len 46) gi|22265375|emb|AL627088.7| -- Zebrafish DNA sequence from clone RP71-1D6 in linkage group 18 Contains a novel gene and a CpG island, complete sequence
+	SEQ (len 44) gi|44151402|gb|AC135920.2| -- Oryza sativa Japonica Group chromosome 5 clone OSJNBa0015G13, complete sequence
+	SEQ (len 23) gi|209418654|gb|AC197856.4| -- Gallus gallus BAC clone CH261-23M13 from chromosome z, complete sequence
+	SEQ (len 45) gi|197276724|gb|AC231938.1| -- Oryza minuta clone OM__Ba0153L11, complete sequence
+	SEQ (len 30) gi|332656411|gb|CP002687.1| -- Arabidopsis thaliana chromosome 4, complete sequence
+	SEQ (len 44) gi|35060965|gb|AC146334.2| -- Oryza sativa (japonica cultivar-group) chromosome 11 BAC clone B1356F10, complete sequence
+	SEQ (len 44) gi|48716467|dbj|AP004861.3| -- Oryza sativa Japonica Group genomic DNA, chromosome 2, BAC clone:OSJNBa0001A11
+	SEQ (len 30) gi|4584519|emb|AL049607.1| -- Arabidopsis thaliana DNA chromosome 4, BAC clone F11C18 (ESSA project)
+	SEQ (len 27) gi|61675739|gb|AC126779.19| -- Medicago truncatula clone mth2-34m14, complete sequence
+	SEQ (len 30) gi|7270093|emb|AL161580.2| -- Arabidopsis thaliana DNA chromosome 4, contig fragment No. 76
+	SEQ (len 49) gi|332824696|ref|XM_003311430.1| -- PREDICTED: Pan troglodytes D-aspartate oxidase, transcript variant 2 (DDO), mRNA
+	SEQ (len 49) gi|332824694|ref|XM_003311429.1| -- PREDICTED: Pan troglodytes D-aspartate oxidase, transcript variant 1 (DDO), mRNA
+	SEQ (len 49) gi|261278133|dbj|AB496420.1| -- Homo sapiens ddo mRNA for D-aspartate oxidase, complete cds
+	SEQ (len 49) gi|158259518|dbj|AK293029.1| -- Homo sapiens cDNA FLJ77393 complete cds, highly similar to Homo sapiens D-aspartate oxidase (DDO), transcript variant 1, mRNA
+	SEQ (len 49) gi|34533928|dbj|AK127146.1| -- Homo sapiens cDNA FLJ45203 fis, clone BRCAN2008701
+	SEQ (len 49) gi|5763740|emb|AL050350.14| -- Human DNA sequence from clone RP1-261K5 on chromosome 6q21-22.1 Contains the 3' end of the SLC22A16 gene for solute carrier family 22 (organic cation transporter) member 16, the DDO gene for D-aspartate oxidase, the 5' part of a novel gene and two CpG islands, complete sequence
+	SEQ (len 49) gi|50471107|emb|CR590300.1| -- full-length cDNA clone CS0DI073YI12 of Placenta Cot 25-normalized of Homo sapiens (human)
+	SEQ (len 49) gi|40217826|ref|NM_004032.2| -- Homo sapiens D-aspartate oxidase (DDO), transcript variant 2, mRNA
+	SEQ (len 49) gi|40217814|ref|NM_003649.2| -- Homo sapiens D-aspartate oxidase (DDO), transcript variant 1, mRNA
+	SEQ (len 49) gi|21618484|gb|BC032786.1| -- Homo sapiens D-aspartate oxidase, mRNA (cDNA clone MGC:45354 IMAGE:5179648), complete cds
+	SEQ (len 49) gi|1742023|dbj|D89858.1| -- Homo sapiens mRNA for D-aspartate oxidase, complete cds
+	SEQ (len 36) gi|41059508|gb|AC122535.3| -- Mus musculus BAC clone RP24-539K4 from chromosome 7, complete sequence
+	SEQ (len 34) gi|257153510|gb|AC146337.4| -- Pan troglodytes BAC clone RP43-54C15 from chromosome 7, complete sequence
+	SEQ (len 34) gi|126215667|gb|AC193543.3| -- Pan troglodytes BAC clone CH251-14C21 from chromosome 7, complete sequence
+	SEQ (len 34) gi|4156189|gb|AC004884.1| -- Homo sapiens PAC clone RP4-778K6 from 7, complete sequence
+	SEQ (len 39) gi|33285246|gb|AC122290.4| -- Mus musculus BAC clone RP23-254P19 from chromosome 14, complete sequence
+	SEQ (len 24) gi|300116191|ref|NG_023255.1| -- Homo sapiens laminin, beta 1 (LAMB1), RefSeqGene on chromosome 7
+	SEQ (len 29) gi|224051734|ref|XM_002200571.1| -- PREDICTED: Taeniopygia guttata gamma isoform of regulatory subunit B56, protein phosphatase 2A (LOC100229655), mRNA
+	SEQ (len 38) gi|157386913|gb|CP000825.1| -- Prochlorococcus marinus str. MIT 9215, complete genome
+	SEQ (len 38) gi|126542380|gb|CP000576.1| -- Prochlorococcus marinus str. MIT 9301, complete genome
+	SEQ (len 38) gi|123197646|gb|CP000551.1| -- Prochlorococcus marinus str. AS9601, complete genome
+	SEQ (len 33) gi|119833561|emb|CT943665.10| -- Zebrafish DNA sequence from clone CH211-7O19 in linkage group 9 Contains the 5' end of the tfpia gene for tissue factor pathway inhibitor a, complete sequence
+	SEQ (len 21) gi|28973963|gb|AC124720.3| -- Mus musculus BAC clone RP23-387F14 from chromosome 5, complete sequence
+	SEQ (len 21) gi|24371529|gb|AC122231.2| -- Mus musculus BAC clone RP23-135M3 from 5, complete sequence
+	SEQ (len 24) gi|50484370|emb|CR603563.1| -- full-length cDNA clone CS0DF008YE14 of Fetal brain of Homo sapiens (human)
+	SEQ (len 24) gi|6094632|gb|AC005046.3| -- Homo sapiens BAC clone CTB-13F3 from 7q22, complete sequence
+	SEQ (len 33) gi|25955740|emb|AL772300.10| -- Zebrafish DNA sequence from clone CH211-165G14, complete sequence
+]
+==== step 2 - alignment (module alignment)  ====
+SingleLetterAlphabet() alignment with 100 rows and 71 columns
+--------------------------ATCAAGCGCATCAATTTC...--- gi|169147133|emb|CU459141.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|126385999|gb|CP000521.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|183207914|gb|CP000863.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|213054530|gb|CP001182.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|213985689|gb|CP001172.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|298698338|gb|CP002080.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|322506180|gb|CP001921.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|323516058|gb|CP002522.1|
+--------------------------ATCAAGCGCATCAATTTC...--- gi|325121063|gb|CP002177.1|
+---------------------------TCAAGCGCATCAGTATC...--- gi|84875184|dbj|AB234387.1|
+--------------AACAGCAGAGAAAACACGCGCATCAATTTC...--- gi|57230420|gb|AE017353.1|
+------------------------ACCTCATGCGCGTCAACATC...--- gi|262076673|gb|CP001804.1|
+-----------------------AACATCATCAGCATCAACATC...--- gi|301109320|ref|XM_002903695.
+----------------------------CATCTGCATCAACATC...--- gi|37575357|gb|AY368673.1|
+---------------------------TCATCTCCGTCAACATC...--- gi|293612213|gb|GU817319.1|
+-------------------------CCTCATCTCACTCAAAATC...--- gi|170044881|ref|XM_001850007.
+-------CATCTTTTTCA-TAGCAGTGGTCTTTGCAGTAGCGTA...--- gi|322504220|emb|FR798979.1|
+-------CATCTTTTTCA-TAGCAGTGGTCTTTGCAGTAGCGTA...--- gi|154332230|ref|XM_001561882.
+...
+-------------TTCAGAGAA---TTTTTTAATGTCTTCTTTT...--- gi|41059508|gb|AC122535.3|

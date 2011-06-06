@@ -34,7 +34,7 @@ def human_readable(value):
     if isinstance(value, list):
         return ("[%d elements:\n" % len(value)) + "\n".join("\t" + human_readable(x) for x in value) + "\n]"
     if isinstance(value, SeqRecord):
-        return "SEQ %s -- %s" % (value.id, value.description)
+        return "SEQ (len %d) %s -- %s" % (len(value.seq),value.id, value.description)
     if isinstance(value, Seq):
         return "SEQ of length %d: %s ... %s" % (len(value), Seq[:10], Seq[10:])
     return str(value)

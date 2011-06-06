@@ -1,3 +1,25 @@
+Pliki
+    main - uruchamia program
+    settings - moduł udostępniający ustawienia
+    settings_validator - udostępnia klasę po której powinny dziedziczyć walidatory ustawień w modułach
+    summary - tworzy podsumowania
+    utils - tworzenie plików tymczasowych
+
+    sequences/ przykładowa sekwencja z annotathon wraz z wynikami
+    test_settings - plik z ustawieniami dla powyższej sekwencji
+
+Zaimplementowane moduły:
+    alignment - multiuliniowienie sekwencji za pomocą clustalw
+    blast - ncbiwww
+    glimmer - szukanie orfów za pomocą glimmera
+    tree - rysowanie drzewa, będącego wynikiem działania clustalw
+    inout - moduł wczytujący sekwencje z pliku (pozostałe moduły same z niego korzystają pod spodem)
+
+Uruchamianie (dla ustawień z test_settings.py):
+    ./main.py test_settings
+
+#############################################################################
+
 moduł:
 - jest importowany po nazwie (musi być dostępny dla pythona, np. w cwd)
 - zawiera funkcę run, która go uruchamia
@@ -22,3 +44,5 @@ ustawienia:
 
 - SUMMARY lista/tupla kroków podsumowania, gdzie każdy krok to para (krok na PIPELINE, nazwa klucza)
     (1, 'a') oznacza weź z wyniku pierwszego modułu na PIPELINE wartość pod kluczem 'a'
+
+

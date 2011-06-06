@@ -1,0 +1,37 @@
+Command:  /home/tomek/prog/bio/final/utilities/glimmer3 /tmp/tmplqsP5T /home/tomek/prog/bio/final/utilities/sample.icm sequences/glimmer_out
+
+Sequence file = /tmp/tmplqsP5T
+Number of sequences = 1
+ICM model file = /home/tomek/prog/bio/final/utilities/sample.icm
+Excluded regions file = none
+List of orfs file = none
+Input is NOT separate orfs
+Independent (non-coding) scores are used
+Circular genome = true
+Truncated orfs = false
+Minimum gene length = 100 bp
+Maximum overlap bases = 30
+Threshold score = 30
+Use first start codon = false
+Start codons = atg,gtg,ttg
+Start probs = 0.600,0.300,0.100
+Stop codons = taa,tag,tga
+GC percentage = 43.2%
+Ignore score on orfs longer than 605
+
+
+>GOS_2453010 Genomic DNA (North American East Coast: Northern Gulf of Maine)
+Sequence length = 1046
+
+           ----- Start -----           --- Length ----  ------------- Scores -------------
+ ID  Frame   of Orf  of Gene     Stop   of Orf of Gene      Raw InFrm F1 F2 F3 R1 R2 R3 NC
+        -1      159      144        1      156     141    -1.40    12  -  0  - 12  -  - 87
+        -2      268      208       89      177     117   -10.38     0  -  0  -  -  0  - 99
+        +3      168      219      335      165     114    -2.86     2  - 34  2  -  -  - 62
+        -3      413      347      228      183     117    -6.54     0  - 25  -  -  -  0 74
+        +3      480      504      614      132     108    -5.72     0  -  0  0 95  -  2  1
+0001    +2      832      850      643      855     837    -5.47     0  -  0  -  7  -  - 92
+        -1      663      594      376      285     216    -2.11     1  -  0  -  1  -  - 98
+        -3      728      707      501      225     204    -2.71     0  -  -  -  -  -  0 99
+        -2      889      868      650      237     216    -6.09     0  -  -  0  -  0  - 99
+        +3      654      798      923      267     123   -11.07     0  -  -  0  -  -  - 99
