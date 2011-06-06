@@ -1,3 +1,24 @@
-Każdy moduł musi posiadać funkcję run, która:
-- zwraca słownik
-- jest postaci run(**kwargs), gdzie kwargs to wynik działania poprzedniego modułu z PIPELINE.
+moduł:
+- jest importowany po nazwie (musi być dostępny dla pythona, np. w cwd)
+- zawiera funkcę run, która go uruchamia
+- zwraca słownik wyników
+- COMPULSORY_SETTINGS: lista/tupla zawierające ustawienia, które muszą się znaleźć w pliku ustawień
+- ARGUMENTS - nazwy argumentów, które może przyjmować
+- RESULTS - klucze (str) w wyniku
+- SettingsValidator - klasa sprawdzająca poprawność ustawień z których korzysta moduł.
+
+---------------------------
+ustawienia:
+- MODULES - lista/tupla modułów do załadowania
+- PIPELINE lista/tupla kroków do wykonania (numerowanych od 0), gdzie każdy krok -
+    (nazwa modułu, słownik argumentów będących wynikami poprzednich modułów, słownik dodatkowych argumentów statycznych)
+    np. ('m', {(1, 'a'): 'b', (0, 'c'): 'd',}, {'x': 3,})
+    oznacza uruchom moduł m z argumentami:
+        - z wyniku działania modułu pierwszego na PIPELINE weź 'a' jako 'b'
+        - z wyniku działania modułu zerowego na PIPELINE weź 'c' jako 'd'
+        - x=3
+
+    to pozwala tworzyć DAGi - tzn każdy moduł może brać wynik dowolnego modułu wykonanego przed nim.
+
+- SUMMARY lista/tupla kroków podsumowania, gdzie każdy krok to para (krok na PIPELINE, nazwa klucza)
+    (1, 'a') oznacza weź z wyniku pierwszego modułu na PIPELINE wartość pod kluczem 'a'

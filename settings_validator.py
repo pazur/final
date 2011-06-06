@@ -4,14 +4,17 @@ class ValidationError(Exception):
     pass
 
 class SettingsValidator(object):
-    def __init__(self, modules=()):
+    def __init__(self, modules=(), file_prefix=''):
         self.modules = modules
+        self.file_prefix = file_prefix
 
     def validate(self, name, value):
         getattr(self, 'validate_' + name, lambda x: None)(value)
 
     def validate_file(self, path, name=''):
         self.validate_string(path, name)
+        if not os.path.isabs(path):
+            path = os.path.join(self.file_prefix, path)
         if not os.path.exists(path):
             raise ValidationError('%s: path %s does not exist' % (name, path))
 

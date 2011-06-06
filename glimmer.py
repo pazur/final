@@ -1,7 +1,7 @@
 import re
 import subprocess
 import inout
-from settings import get_setting
+from settings import get_file
 from utils import create_tmp
 
 COMPULSORY_SETTINGS = ('GLIMMER_PATH',)
@@ -24,20 +24,20 @@ class Glimmer(object):
         if sequence is None:
             sequence = inout.SingleSequenceFileInput().read()
         if icm_file is None:
-            icm_file = get_setting('ICM_FILE')
+            icm_file = get_file('ICM_FILE')
         if extra is None:
-            extra = {}
+            extra = []
         self.sequence = sequence
         self.icm_file = icm_file
-        self.extra = extra
+        self.extra = list(extra)
 
     def run_glimmer(self):
         input_file = create_tmp()
         inout.FileOutput(input_file).write(self.sequence)
-        output_file = get_setting('GLIMMER_OUTPUT', None)
+        output_file = get_file('GLIMMER_OUTPUT', None)
         if output_file is None:
             output_file = create_tmp()
-        exit_code = subprocess.call([get_setting('GLIMMER_PATH'), input_file, self.icm_file, output_file])
+        exit_code = subprocess.call([get_file('GLIMMER_PATH'), input_file, self.icm_file, output_file] + self.extra)
         return exit_code, output_file
 
     def read_genes(self, glimmer_output_file):
@@ -55,9 +55,11 @@ class Glimmer(object):
 
     def run(self):
         glimmer_exit_code, glimmer_output = self.run_glimmer()
-        glimmer_details = glimmer_output + '.detail'
-        glimmer_predict = glimmer_output + '.predict'
-        genes = list(self.read_genes(glimmer_details))
+        with open(glimmer_output + '.detail') as f:
+            glimmer_details = f.read()
+        with open(glimmer_output + '.predict') as f:
+            glimmer_predict = f.read()
+        genes = list(self.read_genes(glimmer_output + '.detail'))
         return {
             'genes': genes,
             'glimmer_details': glimmer_details,

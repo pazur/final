@@ -11,6 +11,7 @@ COMPULSORY_SETTINGS = [
     'SUMMARY',
     'SUMMARY_FILE',
     'SUMMARY_TYPE',
+    'PREFIX',
 ]
 
 SUMMARY_TYPES = ['HUMAN_READABLE']
@@ -48,10 +49,10 @@ class Settings(object):
                 raise settings_validator.ValidationError("%s must be specified in settings module" % setting)
         for setting in dir(self.settings):
             value = getattr(self.settings, setting)
-            SettingsValidator(self.modules).validate(setting, value)
+            SettingsValidator(self.modules, self.settings.PREFIX).validate(setting, value)
             for module in self.modules:
                 if hasattr(module, 'SettingsValidator'):
-                    module.SettingsValidator(self.modules).validate(setting, value)
+                    module.SettingsValidator(self.modules, self.settings.PREFIX).validate(setting, value)
 
     def get_settings_and_modules(self):
         return self.settings, self.modules
